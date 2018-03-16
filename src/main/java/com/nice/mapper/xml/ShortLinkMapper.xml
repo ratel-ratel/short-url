@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nice.mapper.ShortLinkMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.nice.domain.ShortLink">
+		<id column="id" property="id" />
+		<result column="app_id" property="appId" />
+		<result column="link" property="link" />
+		<result column="short_link" property="shortLink" />
+		<result column="created_by" property="createdBy" />
+		<result column="created_time" property="createdTime" />
+		<result column="updated_by" property="updatedBy" />
+		<result column="updated_time" property="updatedTime" />
+		<result column="deleted" property="deleted" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, app_id AS appId, link, short_link AS shortLink, created_by AS createdBy, created_time AS createdTime, updated_by AS updatedBy, updated_time AS updatedTime, deleted
+    </sql>
+
+</mapper>
