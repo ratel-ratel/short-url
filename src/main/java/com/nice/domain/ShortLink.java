@@ -60,17 +60,17 @@ public class ShortLink extends Model<ShortLink> {
      * 删除标识(1:正常  2:删除)
      */
 	private Integer deleted;
-	//指定此字段不映射
-	@TableField(exist = false)
-	private String host;
+//	//指定此字段不映射
+//	@TableField(exist = false)
+//	private String host;
 
-	public String getHost() {
-		return host;
-	}
-
-	public void setHost(String host) {
-		this.host = host;
-	}
+//	public String getHost() {
+//		return host;
+//	}
+//
+//	public void setHost(String host) {
+//		this.host = host;
+//	}
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;

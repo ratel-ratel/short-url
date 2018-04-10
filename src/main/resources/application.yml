@@ -1,6 +1,6 @@
 #app
 server:
-    port: 8089
+    port: 8090
 
 #spring
 spring:
@@ -9,10 +9,15 @@ spring:
       enabled: false
   # H2 DATABASE CONFIG
   datasource:
+    # mysql
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/mybatis_plus?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
     username: root
     password: root
+#    driver-class-name: oracle.jdbc.OracleDriver
+#    url: jdbc\:oracle\:thin\:@127.0.0.1\:1521\:ORCL
+#    username: system
+#    password: oracle
 
 #mybatis
 mybatis-plus:

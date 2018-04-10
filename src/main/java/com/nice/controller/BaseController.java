@@ -44,7 +44,7 @@ public abstract class BaseController {
         if (exp instanceof Exception) {
             respInfo = BackResponseUtil.getBaseResponse(ReturnCodeEnum.CODE_1004.getCode());
             respInfo.setMessage(exp.getMessage()+ "  exception time  " + DateUtil.formatDate(new Date(),DateUtil.YEAR_MONTH_DAY_HH_MM_SS));
-            log.error("timeStamp:" + timeStamp, exp.getMessage(), exp);
+            log.error("timeStamp:" + timeStamp, exp.getMessage(), exp.getMessage());
         } else {
             respInfo.setReturnCode(ReturnCodeEnum.CODE_1004.getCode());
             respInfo.setMessage("exception, timStamp:" + timeStamp);

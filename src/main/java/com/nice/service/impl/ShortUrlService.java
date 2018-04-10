@@ -69,8 +69,8 @@ public class ShortUrlService extends ServiceImpl<ShortUrlMapper, ShortUrl> imple
                 shortLink.setDeleted(1);
                 response = shortLinkService.add(shortLink);
             }
-
-            String shortUrl = shortLink.getHost() + shortLinkStr;
+            //返回短链
+            String shortUrl = host + shortLinkStr;
             //返回前端短链是域名host+加密字符串
             response.setDataInfo(shortUrl);
         } catch (Exception e) {
