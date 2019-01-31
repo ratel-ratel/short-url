@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.ValidationException;
 
 
 /**
@@ -45,6 +46,20 @@ public class ShortUrlController {
         return shortUrlService.generateShortLink(vo, request);
     }
 
+    /**
+     * 生成短链
+     * @param
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/getShortLink")
+    @ResponseBody
+    public String getShortLink(@RequestParam String link, HttpServletRequest request) throws ValidationException {
+        if (StringUtil.isEmpty(link)){
+            throw new ValidationException("请传入要转的链接");
+        }
+        return shortUrlService.getShortLink(link, request);
+    }
     @RequestMapping("/404")
     @ResponseBody
     public BaseResponse error(HttpServletRequest request, HttpServletResponse response) {

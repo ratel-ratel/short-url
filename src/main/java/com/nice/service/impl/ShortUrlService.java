@@ -70,7 +70,7 @@ public class ShortUrlService extends ServiceImpl<ShortUrlMapper, ShortUrl> imple
                 response = shortLinkService.add(shortLink);
             }
 
-            String shortUrl = shortLink.getHost() + shortLinkStr;
+            String shortUrl = host + shortLinkStr;
             //返回前端短链是域名host+加密字符串
             response.setDataInfo(shortUrl);
         } catch (Exception e) {
@@ -79,6 +79,46 @@ public class ShortUrlService extends ServiceImpl<ShortUrlMapper, ShortUrl> imple
         }
         log.info("生成短链返回结果 : {}", response);
         return response;
+    }
+
+    @Override
+    public String getShortLink(String link, HttpServletRequest request) {
+        String shortUrl="";
+        ShortLink shortLink=new ShortLink();
+        shortLink.setAppId(100000054L);
+        //业务操作
+        log.info("生成短链请求参数 : {}", link);
+        try {
+            String longLink = encodeUrl(link);//url编码
+            shortLink.setLink(longLink);
+            //生成短链
+            String shortLinkStr = ShortUtil.shortUrl(longLink, shortLink.getAppId().toString());
+            StringBuffer requestURL = request.getRequestURL();
+            //获取域名
+            String host = requestURL.delete(requestURL.length() - request.getRequestURI().length(), requestURL.length()).append("/").toString();
+            //存储的短链是host+加密字符串
+            shortLink.setShortLink(host + shortLinkStr);
+            log.info("shortUrl is : {}", shortLink.getShortLink());
+
+            //校验唯一性、数据库中不存在该短链才保存
+            BaseResponse<ShortLink> baseResponse = shortLinkService.queryLink(shortLink);
+            if (null == baseResponse || !ReturnCodeEnum.CODE_1000.getCode().equals(baseResponse.getReturnCode())) {
+                Long time = System.currentTimeMillis();
+                shortLink.setCreatedTime(time);
+                shortLink.setUpdatedBy(shortLink.getCreatedBy());
+                shortLink.setUpdatedTime(time);
+                shortLink.setDeleted(1);
+                shortLinkService.add(shortLink);
+            }
+
+            shortUrl= host + shortLinkStr;
+            //返回前端短链是域名host+加密字符串
+            return shortUrl;
+        } catch (Exception e) {
+            log.error("error: {}", e);
+        }
+        log.info("生成短链返回结果 : {}", shortUrl);
+        return shortUrl;
     }
 
     /**

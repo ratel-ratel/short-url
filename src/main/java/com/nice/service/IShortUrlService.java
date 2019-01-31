@@ -18,5 +18,6 @@ public interface IShortUrlService extends IService<ShortUrl> {
     public BaseResponse update(ShortUrl model);
     public BaseResponse query(ShortUrl model);
     public BaseResponse generateShortLink(ShortLink shortLink, HttpServletRequest request);
-
+    //得到短链
+    String getShortLink(String link, HttpServletRequest request);
 }
