@@ -102,9 +102,16 @@
             <artifactId>commons-codec</artifactId>
             <version>1.10</version>
         </dependency>
+        <!--springboot jar 变war-->
+        <!--<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>-->
     </dependencies>
 
     <build>
+        <finalName>short-url</finalName>
         <extensions>
             <extension>
                 <groupId>kr.motd.maven</groupId>
