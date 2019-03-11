@@ -30,7 +30,7 @@ import java.util.Map;
 @Controller
 @Slf4j
 @AllArgsConstructor
-public class RedirectController /*extends BaseController */{
+public class RedirectController extends BaseController {
 
     private IShortLinkService shortLinkService;
 
