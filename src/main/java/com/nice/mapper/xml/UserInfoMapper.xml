@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nice.mapper.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.nice.domain.UserInfo">
+    <id column="USER_ID" jdbcType="BIGINT" property="id" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="MOBILE_PHONE" jdbcType="VARCHAR" property="mobilePhone" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    USER_ID, USER_NAME, MOBILE_PHONE
+  </sql>
+  <select id="queryMax" resultType="java.lang.Long">
+    SELECT
+        max( ui.USER_ID )
+    FROM
+        `user_info` ui
+  </select>
+  <select id="queryAll" resultMap="BaseResultMap">
+    SELECT USER_ID, USER_NAME, MOBILE_PHONE from user_info
+  </select>
+</mapper>
